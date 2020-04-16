@@ -7,7 +7,8 @@ services:
       - mysql
   
   mysql:
-    image: mysql:8
+    # TODO: Ver de usar mysql:8, el driver de typeorm todavía no está actualizado con el nuevo tipo de logueo de V8
+    image: mysql:5.7
     volumes:
       - mysql-data:/var/lib/mysql
     environment:
