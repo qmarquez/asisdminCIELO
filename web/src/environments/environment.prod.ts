@@ -1,3 +1,5 @@
-export const environment = {
-  production: true
-};
+import { environment } from "./environment.base";
+
+environment.host = '';
+
+export default { environment };
