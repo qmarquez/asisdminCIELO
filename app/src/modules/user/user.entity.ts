@@ -1,4 +1,4 @@
-import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, ManyToMany, UpdateDateColumn, CreateDateColumn } from "typeorm";
+import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, UpdateDateColumn, CreateDateColumn, ManyToOne } from "typeorm";
 import { status } from "../../shared/status.enum";
 import { Role } from "./role.entity";
 
@@ -11,15 +11,14 @@ export class User extends BaseEntity {
   @Column({ type: 'varchar', unique: true, length: 25, nullable: false })
   username: string;
 
-
   @Column({ type: 'varchar', nullable: false })
   password: string;
 
   @Column({ type: 'varchar', unique: true, length: 25, nullable: false })
   name: string;
 
-  @ManyToMany(() => Role, ({ users }) => users, { eager: true })
-  roles: string;
+  @ManyToOne(() => Role, ({ users }) => users, { eager: true })
+  role: string;
 
   @Column({ type: 'varchar', default: status.ACTIVE, length: '8' })
   status: string;

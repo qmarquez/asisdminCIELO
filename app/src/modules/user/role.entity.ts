@@ -1,4 +1,4 @@
-import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, JoinColumn, CreateDateColumn, UpdateDateColumn, OneToMany } from 'typeorm';
 import { User } from '../user/user.entity';
 import { status } from '../../shared/status.enum';
 
@@ -14,7 +14,7 @@ export class Role extends BaseEntity {
   @Column({ type: 'text', nullable: true })
   description: string;
 
-  @ManyToMany(() => User, ({ roles }) => roles)
+  @OneToMany(() => User, ({ role }) => role)
   @JoinColumn()
   users: Array<User>;
 
