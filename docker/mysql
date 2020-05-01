@@ -1,0 +1,5 @@
+#!/bin/bash
+
+source .env
+
+docker-compose exec mysql mysql -u$MYSQL_USERNAME -p$MYSQL_PASSWORD
