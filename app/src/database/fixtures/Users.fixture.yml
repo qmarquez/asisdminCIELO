@@ -1,0 +1,21 @@
+entity: User
+processor: ./Users.processor.ts
+items:
+  user0:
+    username: admin1
+    password: '123456'
+    name: Test admin
+    role: Duenno
+    status: ACTIVE
+  user1:
+    username: employee1
+    password: '123456'
+    name: Test Administrativo
+    role: Administrativo
+    status: ACTIVE
+  user2:
+    username: staff1
+    password: '123456'
+    name: Test staff
+    role: Staff
+    status: ACTIVE
