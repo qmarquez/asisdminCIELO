@@ -1,5 +1,5 @@
-import { User } from './user.entity';
-import { Role } from './role.entity';
+import { User } from '../user.entity';
+import { Role } from '../role.entity';
 
 describe('User entity', () => {
   it('should make a user with no fields', () => {
