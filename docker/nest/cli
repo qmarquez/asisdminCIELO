@@ -1,0 +1,4 @@
+#!/bin/bash
+
+USER=$(id -u):$(id -g)
+docker-compose exec --user $USER --workdir /asisdminCIELO/app app ./node_modules/.bin/nest $@

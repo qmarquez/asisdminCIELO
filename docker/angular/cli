@@ -1,0 +1,4 @@
+#!/bin/sh
+
+USER=$(id -u):$(id -g)
+docker-compose exec --user $USER --workdir /asisdminCIELO/web app ./node_modules/.bin/ng $@ 
