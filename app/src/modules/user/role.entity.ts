@@ -5,6 +5,14 @@ import { status } from '../../shared/status.enum';
 @Entity('roles')
 export class Role extends BaseEntity {
 
+  constructor(name?: string, description?: string, users?: Array<User>);
+  constructor(name: string, description?: string, users?: Array<User>) {
+    super()
+    this.name = name;
+    this.description = description;
+    this.users = users;
+  }
+
   @PrimaryGeneratedColumn('increment')
   id: number;
 
