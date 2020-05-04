@@ -30,6 +30,9 @@ export class ConfigService {
         MYSQL_DATABASE: env.MYSQL_DATABASE,
         MYSQL_HOST: env.MYSQL_HOST,
         MYSQL_SSL: env.MYSQL_SSL,
+        HASH_ROUNDS: env.HASH_ROUNDS,
+        JWT_SECRET: env.JWT_SECRET,
+        JWT_COOKIE_NAME: env.JWT_COOKIE_NAME
       }
     }
   }

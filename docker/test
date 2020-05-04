@@ -1,0 +1,9 @@
+#!/bin/bash
+
+NEST_COMMAND=test
+if [ "${WATCH:-false}" != "false" ]; then
+  NEST_COMMAND=test:watch
+fi;
+
+# TODO Crear un test.sh para correr los tests tanto de nest como de Angular
+docker-compose exec --workdir /asisdminCIELO/app app npm run $NEST_COMMAND
