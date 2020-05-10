@@ -7,10 +7,10 @@ import { createMock, DeepMocked } from '@golevelup/nestjs-testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { hashPassword } from '../../../lib/hash-password';
 import { UnauthorizedException } from '@nestjs/common';
-import { JwtService } from '@nestjs/jwt';
 import { sign } from 'jsonwebtoken';
 import { IJwtPayload } from '../../../lib/jwt-payload.interface';
 import { ReadUserDTO } from '../dtos';
+import { AuthService } from '../../auth/auth.service';
 
 describe('UserService', () => {
   let service: UserService;
@@ -18,10 +18,10 @@ describe('UserService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [UserService, UserRepository, JwtService]
+      providers: [UserService, UserRepository, AuthService]
     })
       .overrideProvider(UserRepository).useValue(createMock<Repository<User>>())
-      .overrideProvider(JwtService).useValue({ sign: (payload: IJwtPayload) => sign(payload, 'awsomeSecret') })
+      .overrideProvider(AuthService).useValue({ generateJWT: ({ id, name, username }: User) => sign(({ id, name, username } as IJwtPayload), 'awsomeSecret') })
       .compile();
 
     service = module.get<UserService>(UserService);
