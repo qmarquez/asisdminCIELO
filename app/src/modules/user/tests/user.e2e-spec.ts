@@ -3,8 +3,8 @@ import * as request from 'supertest';
 import { INestApplication } from '@nestjs/common';
 import { UserModule } from '../user.module';
 import { DatabaseModule } from '../../../database/database.module';
-import { ConfigService } from '../../../config/config.service';
-import { configuration } from '../../../config/config.keys';
+import { ConfigService } from '../../config/config.service';
+import { configuration } from '../../config/config.keys';
 
 describe('User E2E', () => {
   let app: INestApplication;
@@ -12,7 +12,7 @@ describe('User E2E', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [DatabaseModule, UserModule],
+      imports: [UserModule, DatabaseModule],
       providers: [ConfigService]
     }).compile();
 

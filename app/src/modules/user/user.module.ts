@@ -5,9 +5,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserRepository } from './user.repository';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
-import { ConfigModule } from '../../config/config.module';
-import { ConfigService } from '../../config/config.service';
-import { configuration } from '../../config/config.keys';
+import { ConfigModule } from '../config/config.module';
 
 @Module({
   controllers: [UserController],

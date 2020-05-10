@@ -1,8 +1,8 @@
 import { Controller, Post, Body, HttpCode, UnauthorizedException, Res, Header } from '@nestjs/common';
 import { UserService } from './user.service';
 import { Response } from 'express';
-import { ConfigService } from '../../config/config.service';
-import { configuration } from '../../config/config.keys';
+import { ConfigService } from '../config/config.service';
+import { configuration } from '../config/config.keys';
 
 @Controller('user')
 export class UserController {

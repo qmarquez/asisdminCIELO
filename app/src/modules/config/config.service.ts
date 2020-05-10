@@ -13,7 +13,7 @@ export class ConfigService {
     const { env } = process;
     const isDev = env.NODE_ENV !== 'production';
     if (isDev) {
-      const envPath = __dirname + '/../../../.env';
+      const envPath = __dirname + '/../../../../.env';
       const existsEnv = fs.existsSync(envPath);
 
       if (!existsEnv) {

@@ -3,8 +3,8 @@ import { UserController } from '../user.controller';
 import { UserService } from '../user.service';
 import { UnauthorizedException, INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
-import { ConfigService } from '../../../config/config.service';
-import { configuration } from '../../../config/config.keys';
+import { ConfigService } from '../../config/config.service';
+import { configuration } from '../../config/config.keys';
 
 describe('User Controller', () => {
   let controller: UserController | any;
