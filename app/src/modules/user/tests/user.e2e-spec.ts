@@ -21,6 +21,10 @@ describe('User E2E', () => {
     await app.init();
   });
 
+  afterEach(async () => {
+    await app.close();
+  });
+
   describe('Login', () => {
 
     it('[POST]/user/login. Should return user in the body and json token cookie', async () => {
