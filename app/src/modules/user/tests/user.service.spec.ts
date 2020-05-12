@@ -7,8 +7,6 @@ import { createMock, DeepMocked } from '@golevelup/nestjs-testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { hashPassword } from '../../../lib/hash-password';
 import { UnauthorizedException } from '@nestjs/common';
-import { sign } from 'jsonwebtoken';
-import { IJwtPayload } from '../../../lib/jwt-payload.interface';
 import { ReadUserDTO } from '../dtos';
 import { AuthService } from '../../auth/auth.service';
 
@@ -21,7 +19,7 @@ describe('UserService', () => {
       providers: [UserService, UserRepository, AuthService]
     })
       .overrideProvider(UserRepository).useValue(createMock<Repository<User>>())
-      .overrideProvider(AuthService).useValue({ generateJWT: () => ({ token: 'aToken', refresh: ' aRefresh' }) })
+      .overrideProvider(AuthService).useValue({ generateJWT: () => ({ token: 'aToken', refresh: 'aRefresh' }) })
       .compile();
 
     service = module.get<UserService>(UserService);
@@ -46,9 +44,8 @@ describe('UserService', () => {
       repo.findOne.mockResolvedValue(mockUser);
       const { token, refresh, user } = await service.login('admin', '123');
 
-      expect(token).toBeDefined();
-      expect(refresh).toBeDefined();
-      expect(user).toBeDefined();
+      expect(token).toBe('aToken');
+      expect(refresh).toBe('aRefresh');
       expect(user).toBeInstanceOf(ReadUserDTO);
     });
 

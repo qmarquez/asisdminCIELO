@@ -21,15 +21,21 @@ describe('AuthService', () => {
     expect(service).toBeDefined();
   });
 
-  it('should handle the JWT generation.', () => {
+  it('should have a generateJWT method.', () => {
     expect(service.generateJWT).toBeDefined();
+  });
+
+  it('should handle the JWT generation.', () => {
     const { token, refresh } = service.generateJWT({ username: 'randomUser', role: { id: 1 } } as User);
     expect(token).toBe('archiToken');
     expect(refresh).toBe('archiToken');
   });
 
-  it('should handle the token validation.', () => {
+  it('should have a validateJWT method.', () => {
     expect(service.validateJWT).toBeDefined();
+  });
+
+  it('should handle the token validation.', () => {
     const isValid = service.validateJWT('misteriousToken');
     expect(isValid).toBe(decodedObject);
   });

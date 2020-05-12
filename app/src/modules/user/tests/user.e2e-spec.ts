@@ -5,6 +5,7 @@ import { UserModule } from '../user.module';
 import { DatabaseModule } from '../../../database/database.module';
 import { ConfigService } from '../../config/config.service';
 import { configuration } from '../../config/config.keys';
+import { decode } from 'jsonwebtoken';
 
 describe('User E2E', () => {
   let app: INestApplication;
@@ -34,7 +35,10 @@ describe('User E2E', () => {
         .expect(200)
         .expect('set-cookie', new RegExp(cookieName));
 
-      expect(response.body.user).toBeDefined();
+      expect(response.body.user).toMatchObject({ username: 'admin1' });
+
+      const decoded = decode(response.body.refresh, { json: true });
+      expect(decoded.token).toBeDefined();
     });
 
   });
