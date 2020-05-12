@@ -23,8 +23,9 @@ describe('AuthService', () => {
 
   it('should handle the JWT generation.', () => {
     expect(service.generateJWT).toBeDefined();
-    const token = service.generateJWT({ username: 'randomUser', role: { id: 1 } } as User);
+    const { token, refresh } = service.generateJWT({ username: 'randomUser', role: { id: 1 } } as User);
     expect(token).toBe('archiToken');
+    expect(refresh).toBe('archiToken');
   });
 
   it('should handle the token validation.', () => {

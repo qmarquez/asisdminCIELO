@@ -22,10 +22,10 @@ export class UserController {
       throw new UnauthorizedException();
     }
 
-    const { token, user } = await this.userService.login(username, password);
+    const { token, refresh, user } = await this.userService.login(username, password);
 
     res.cookie(this.configService.get(configuration.JWT_COOKIE_NAME), token);
-    res.json({ user });
+    res.json({ user, refresh });
   }
 
 }

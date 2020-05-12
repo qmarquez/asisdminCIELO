@@ -19,7 +19,7 @@ describe('AuthService', () => {
     const role = new Role('Admin');
     role.id = 1;
     const user = new User('aUsername', '123456', 'my name', role);
-    const token = service.generateJWT(user);
+    const { token } = service.generateJWT(user);
 
     expect(token).toBeDefined();
 
@@ -32,4 +32,5 @@ describe('AuthService', () => {
     expect(decoded.iss).toBeDefined();
     expect(decoded.iat).toBeDefined();
   });
+  
 });

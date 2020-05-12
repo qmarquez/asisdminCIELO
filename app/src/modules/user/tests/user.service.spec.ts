@@ -21,7 +21,7 @@ describe('UserService', () => {
       providers: [UserService, UserRepository, AuthService]
     })
       .overrideProvider(UserRepository).useValue(createMock<Repository<User>>())
-      .overrideProvider(AuthService).useValue({ generateJWT: ({ id, name, username }: User) => sign(({ id, name, username } as IJwtPayload), 'awsomeSecret') })
+      .overrideProvider(AuthService).useValue({ generateJWT: () => ({ token: 'aToken', refresh: ' aRefresh' }) })
       .compile();
 
     service = module.get<UserService>(UserService);
@@ -44,8 +44,10 @@ describe('UserService', () => {
     it('should return token and ReadUserDTO if username exists and password is valid', async () => {
       const mockUser = new User('admin', hashPassword('123'));
       repo.findOne.mockResolvedValue(mockUser);
-      const { token, user } = await service.login('admin', '123');
+      const { token, refresh, user } = await service.login('admin', '123');
+
       expect(token).toBeDefined();
+      expect(refresh).toBeDefined();
       expect(user).toBeDefined();
       expect(user).toBeInstanceOf(ReadUserDTO);
     });

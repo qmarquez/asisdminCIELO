@@ -41,6 +41,10 @@ export class LoggedInDTO {
   token: string;
 
   @Expose()
+  @IsString()
+  refresh: string;
+
+  @Expose()
   @Type(() => ReadUserDTO)
   user: ReadUserDTO;
 }

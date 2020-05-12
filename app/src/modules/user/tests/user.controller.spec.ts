@@ -10,13 +10,14 @@ describe('User Controller', () => {
   let controller: UserController | any;
   let app: INestApplication;
   let cookieName: string;
+  const userExample = { id: 1, name: 'carl', username: 'Carlos' };
 
   const userService = {
     login: async (username: string, password: string) => {
       if (username !== 'admin' || password !== '123') {
         throw new UnauthorizedException();
       }
-      return { token: 'a awesome token', user: { id: 1, name: 'carl', username: 'Carlos' } };
+      return { token: 'a awesome token', refresh: 'refresh', user: userExample };
     }
   };
 
@@ -70,7 +71,8 @@ describe('User Controller', () => {
         .expect(200)
         .expect('set-cookie', new RegExp(cookieName));
 
-      expect(response.body.user).toBeDefined();
+      expect(response.body.user).toMatchObject(userExample);
+      expect(response.body.refresh).toBe('refresh');
     });
 
   });

@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { IJwtPayload } from '../../lib/jwt-payload.interface';
 import { User } from '../user/user.entity';
+import { IRjwtPayload } from '../../lib/rjwt-payload.interface';
 
 @Injectable()
 export class AuthService {
@@ -17,7 +18,16 @@ export class AuthService {
       roleId: user.role.id
     };
 
-    return this.jwtService.sign(payload);
+    const token = this.jwtService.sign(payload);
+
+    const rPayload: IRjwtPayload = {
+      id: user.id,
+      token,
+    }
+
+    const refresh = this.jwtService.sign(rPayload);
+
+    return { token, refresh };
   }
 
   validateJWT(token: string): IJwtPayload {

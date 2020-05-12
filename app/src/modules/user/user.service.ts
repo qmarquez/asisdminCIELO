@@ -25,9 +25,9 @@ export class UserService {
       throw new UnauthorizedException('Invalid credentials');
     }
 
-    const token = this.authService.generateJWT(user);
+    const { token, refresh } = this.authService.generateJWT(user);
 
-    return plainToClass(LoggedInDTO, { token, user });
+    return plainToClass(LoggedInDTO, { token, refresh, user });
 
   }
 }
