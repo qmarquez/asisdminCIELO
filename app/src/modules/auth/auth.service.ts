@@ -13,9 +13,15 @@ export class AuthService {
     const payload: IJwtPayload = {
       id: user.id,
       username: user.username,
-      name: user.name
+      name: user.name,
+      roleId: user.role.id
     };
 
     return this.jwtService.sign(payload);
+  }
+
+  validateJWT(token: string): IJwtPayload {
+    const decoded = this.jwtService.verify(token, { algorithms: ['RS256'] });
+    return decoded;
   }
 }

@@ -23,7 +23,7 @@
     "migration:generate": "ts-node node_modules/.bin/typeorm migration:generate --name",
     "migration:run": "ts-node node_modules/.bin/typeorm migration:run",
     "migration:revert": "ts-node node_modules/.bin/typeorm migration:revert",
-    "fixtures": "npx fixtures --config ./orm.config.js --require=ts-node/register ./src/database/fixtures"
+    "fixtures": "npx fixtures --config ./ormconfig.js --require=ts-node/register ./src/database/fixtures"
   },
   "dependencies": {
     "@nestjs/common": "^7.0.0",

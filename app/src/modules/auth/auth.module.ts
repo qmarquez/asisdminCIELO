@@ -13,7 +13,6 @@ import { configuration } from '../config/config.keys';
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (config: ConfigService) => ({
-        secret: config.get(configuration.JWT_SECRET),
         signOptions: {
           expiresIn: '1h',
           algorithm: 'RS256',
